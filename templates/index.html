@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Document Analyzer</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+            margin: auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+        input[type="file"] {
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .hidden {
+            display: none;
+        }
+        pre {
+            text-align: left;
+            background: #f8f8f8;
+            padding: 10px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            border-radius: 5px;
+        }
+        h3, h4 {
+            text-align: left;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        h3 {
+            background: #28a745;
+            color: white;
+        }
+        h4 {
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+        }
+        h4:hover {
+            background-color: #0056b3;
+        }
+        .clause-content, .summary-content {
+            display: none;
+            padding: 10px;
+            border-left: 3px solid #007bff;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📜 Legal Document Analyzer</h2>
+        <form id="uploadForm">
+            <input type="file" id="fileInput" accept=".pdf">
+            <button type="submit">Upload & Analyze</button>
+        </form>
+        <div id="result" class="hidden">
+            <h3>🔍 Analysis Result for: <span id="filename"></span></h3>
+
+            <h3 onclick="toggleSummary()">📄 Document Summary</h3>
+            <div id="summaryOutput" class="summary-content"><pre></pre></div>
+
+            <div id="clausesOutput"></div>
+        </div>
+    </div>
+
+    <script>
+    document.getElementById("uploadForm").addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const fileInput = document.getElementById("fileInput");
+
+        if (!fileInput.files.length) {
+            alert("Please select a file!");
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append("file", fileInput.files[0]);
+
+        document.getElementById("result").classList.add("hidden");
+
+        try {
+            const response = await fetch("/upload", { method: "POST", body: formData });
+            const data = await response.json();
+
+            console.log("DEBUG Response:", data);  // 🔹 Log response in console
+
+            if (data.error) {
+                alert("Error: " + data.error);
+                return;
+            }
+
+            document.getElementById("filename").textContent = data.filename;
+            
+            // Display Summary
+            const summaryOutput = document.getElementById("summaryOutput").querySelector("pre");
+            summaryOutput.textContent = data.summary || "No summary available.";
+            document.getElementById("summaryOutput").style.display = "block";
+
+            // Display Clauses
+            const clausesOutput = document.getElementById("clausesOutput");
+            clausesOutput.innerHTML = "";  // Clear previous content
+
+            for (const [clause, content] of Object.entries(data.clauses)) {
+                if (content.trim()) {  // Only display non-empty clauses
+                    const clauseSection = document.createElement("div");
+
+                    clauseSection.innerHTML = `
+                        <h4 onclick="toggleClause(this)">📌 ${clause}</h4>
+                        <div class="clause-content"><pre>${content}</pre></div>
+                    `;
+                    clausesOutput.appendChild(clauseSection);
+                }
+            }
+
+            document.getElementById("result").classList.remove("hidden");
+
+        } catch (error) {
+            console.error("Error:", error);
+            alert("An error occurred. Check console for details.");
+        }
+    });
+
+    function toggleClause(header) {
+        const content = header.nextElementSibling;
+        content.style.display = content.style.display === "none" ? "block" : "none";
+    }
+
+    function toggleSummary() {
+        const summaryContent = document.getElementById("summaryOutput");
+        summaryContent.style.display = summaryContent.style.display === "none" ? "block" : "none";
+    }
+    </script>
+</body>
+</html>

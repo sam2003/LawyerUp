@@ -1,0 +1,5 @@
+Contract Comparison – Compare two contracts for differences in clauses.
+Legal Compliance Check – Check if a document meets specific legal regulations.
+Clause Suggestions – Provide suggestions for missing or weak clauses.
+AI-Powered Contract Drafting – Generate a legal document based on user input.
+Legal Definitions & Explanations – Extract legal terms and explain them.
