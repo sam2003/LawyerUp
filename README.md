@@ -1,0 +1,2 @@
+# LawyerUp
+Legal Contract Analyzer
