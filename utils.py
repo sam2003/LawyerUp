@@ -178,7 +178,7 @@ def draft_contract(contract_type, party_one, party_two, effective_date, key_term
     
     Additional Description: {description}
     
-    {"Modify the following existing contract instead of generating from scratch:\n" + existing_contract_text if existing_contract_text else ""}
+    {"Modify the following existing contract instead of generating from scratch:" + existing_contract_text if existing_contract_text else ""}
     
     Ensure the contract is legally structured with appropriate clauses.
     """
