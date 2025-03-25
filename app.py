@@ -16,6 +16,13 @@ st.markdown("""
         header {visibility: hidden;}
     </style>""", unsafe_allow_html=True
 )
+
+st.markdown("""
+    <head>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5876158560001890"
+                crossorigin="anonymous"></script>
+    </head>
+""")
 # Initialize session state for navigation
 if "current_page" not in st.session_state:
     st.session_state.current_page = "home"
