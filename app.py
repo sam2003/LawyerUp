@@ -4,7 +4,7 @@ import base64
 from io import BytesIO
 from PIL import Image
 from utils import extract_text_from_pdf
-
+import streamlit.components.v1 as components
 st.set_page_config(
     page_title="SAMS Legal Document Analyzer",
     page_icon="LOGO.png",
@@ -17,12 +17,7 @@ st.markdown("""
     </style>""", unsafe_allow_html=True
 )
 
-st.markdown("""
-    <head>
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5876158560001890"
-                crossorigin="anonymous"></script>
-    </head>
-""")
+ 
 # Initialize session state for navigation
 if "current_page" not in st.session_state:
     st.session_state.current_page = "home"
@@ -79,6 +74,20 @@ if st.session_state.current_page == "home":
     with col2:
         st.title("Welcome to the SAMS Legal Document Analyzer")
     st.info("Please select a functionality from the sidebar.")
+    ad_code = """
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5876158560001890"
+            crossorigin="anonymous"></script>
+    <ins class="adsbygoogle"
+        style="display:block"
+        data-ad-client="ca-pub-5876158560001890"
+        data-ad-slot="YOUR_AD_SLOT"
+        data-ad-format="auto"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+    """
+
+    components.html(ad_code, height=250)
 else:
     module_path = f"modules/{st.session_state.current_page}.py"
     if os.path.exists(module_path):
