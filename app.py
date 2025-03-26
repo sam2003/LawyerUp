@@ -76,15 +76,7 @@ if st.session_state.current_page == "home":
     st.info("Please select a functionality from the sidebar.")
     ad_code = """
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5876158560001890"
-            crossorigin="anonymous"></script>
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-5876158560001890"
-        data-ad-slot="YOUR_AD_SLOT"
-        data-ad-format="auto"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
+        crossorigin="anonymous"></script>
     """
 
     components.html(ad_code, height=250)
