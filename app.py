@@ -72,7 +72,7 @@ if st.session_state.current_page == "home":
     with col1:
         st.image("LOGO.png", width=200)
     with col2:
-        st.title("Welcome to the SAMS Legal Document Analyzer")
+        st.title("Welcome to the Lawyered")
     st.info("Please select a functionality from the sidebar.")
     ad_code = """
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5876158560001890"
