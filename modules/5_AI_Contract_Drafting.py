@@ -56,3 +56,18 @@ if st.button("📝 Generate Contract"):
     # Display Result
     st.subheader("📄 Generated Contract")
     st.write(generated_contract)
+ad_code = """
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5876158560001890"
+     crossorigin="anonymous"></script>
+<ins class="adsbygoogle"
+     style="display:block; text-align:center;"
+     data-ad-layout="in-article"
+     data-ad-format="fluid"
+     data-ad-client="ca-pub-5876158560001890"
+     data-ad-slot="6647795675"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+"""
+
+st.components.v1.html(ad_code, height=300)
