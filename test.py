@@ -12,24 +12,11 @@ st.set_page_config(
 )
 st.markdown("""
     <style>
-    /* Force main content to a fixed width and align left */
-    .main .block-container {
-        max-width: 1000px;      /* Fixed width for content */
-        margin-left: 2rem !important;
-        margin-right: 350px !important;
-        padding-right: 2rem;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-st.markdown("""
-    <style>
         MainMenu {visibility: hidden;}
         header {visibility: hidden;}
     </style>""", unsafe_allow_html=True
 )
-
-left_col, right_col = st.columns([3, 1])
+left_col, right_col = st.columns([4, 1])
 with left_col:
     # Initialize session state for navigation
     if "current_page" not in st.session_state:
@@ -104,25 +91,9 @@ with left_col:
             st.error(f"Error: {module_path} not found!")
 
 
-# with right_col:
-st.markdown("""
-    <style>
-    .floating-ad {
-        position: fixed;
-        top: 100px;
-        right: 20px;
-        width: 300px;
-        height: 600px;
-        z-index: 100;
-        box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-        border-radius: 8px;
-        background: white;
-    }
-    </style>
-    <div class="floating-ad">
-        <iframe src="https://www.youtube.com/embed/qPQchDWcfa8?si=R5xaxZqtzOsFUvl4" width="300" height="600" frameborder="0" scrolling="no"></iframe>
-    </div>
-""", unsafe_allow_html=True)
+with right_col:
+    st.markdown("### Sponsored")
+    components.iframe("https://www.youtube.com/embed/qPQchDWcfa8?si=R5xaxZqtzOsFUvl4", width=300, height=600)  # Vertical ad size
 
 st.markdown("""
     <style>
