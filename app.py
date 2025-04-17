@@ -12,6 +12,12 @@ st.set_page_config(
 )
 st.markdown("""
     <head>
+    <meta name="google-adsense-account" content="ca-pub-5876158560001890">
+    </head>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+    <head>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5876158560001890"
      crossorigin="anonymous"></script>
     </head>
