@@ -120,7 +120,7 @@ st.markdown("""
     }
     </style>
     <div class="floating-ad">
-        <iframe src="https://www.youtube.com/embed/qPQchDWcfa8?si=R5xaxZqtzOsFUvl4" width="300" height="600" frameborder="0" scrolling="no"></iframe>
+        <iframe src="http://adpage.rf.gd/" width="300" height="600" frameborder="0" scrolling="no"></iframe>
     </div>
 """, unsafe_allow_html=True)
 
